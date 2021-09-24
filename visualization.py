@@ -4,7 +4,7 @@ import cv2
 
 font1_ = ImageFont.truetype("font/Bunny Lover.ttf", 50)
 font_ = ImageFont.truetype("font/micro_se.ttf", 100)
-
+font2_ = ImageFont.truetype("font/micro_se.ttf", 90)
 
 
 def quater_image_crop(img):
@@ -54,10 +54,10 @@ def stack_images(tuple_list):
     drawing.text((720, 910), str(floor(tuple_list[0][0])) + " dag(e)", fill=(255, 0, 0), font = font_)
 
     #Inserting food predictions
-    drawing.text((100, 200), tuple_list[3][2], fill=(0, 0, 0), font = font_)
-    drawing.text((100, 430), tuple_list[2][2], fill=(0, 0, 0), font = font_)
-    drawing.text((100, 670), tuple_list[1][2], fill=(0, 0, 0), font = font_)
-    drawing.text((100, 910), tuple_list[0][2], fill=(255, 0, 0), font = font_)
+    drawing.text((100, 200), tuple_list[3][2], fill=(0, 0, 0), font = font2_)
+    drawing.text((100, 430), tuple_list[2][2], fill=(0, 0, 0), font = font2_)
+    drawing.text((100, 670), tuple_list[1][2], fill=(0, 0, 0), font = font2_)
+    drawing.text((100, 910), tuple_list[0][2], fill=(255, 0, 0), font = font2_)
     
     spoilage_.save("temporary_pics/Result.png")
 
