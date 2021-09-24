@@ -2,11 +2,16 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 import pandas as pd
 
-
-
 #List of classes trained in model
 food_list = ['apple_pie','pizza','omelette','caesar_salad','ceviche', 'grilled_cheese_sandwich', 'hamburger','macaroni_and_cheese',
              'pulled_pork_sandwich','risotto','seaweed_salad','spaghetti_carbonara','tiramisu','waffles']
+
+food_list1 = ['Taerte','Pizza','Omelette','Caesar salat','Ceviche', 'Toast', 'Hamburger','Macaroni',
+             'Pulled pork','Risotto','Tang salat','Carbonara','Tiramisu','Vafler']
+
+def listOfTuples(l1, l2):
+    return list(map(lambda x, y:(x,y), l1, l2))
+
 
 #Method for predicting food in images
 def predict_class(model, images):
@@ -18,18 +23,16 @@ def predict_class(model, images):
         img /= 255.                                    
         pred = model.predict(img)
         index = np.argmax(pred)
-        food_list.sort()
-        list += [food_list[index]]
-
-        # plt.imshow(img)                           
-        # plt.axis('off')
-        # plt.show()
+        merged_list = listOfTuples(food_list, food_list1)
+        merged_list.sort()
+        list += [merged_list[index][1]]
     return list
 
 def predict_shelf_life(predicted_food):
-    df = pd.read_csv (r'conversion_table.csv',header=0)
+    df = pd.read_csv (r'conversion_table1.csv',header=0)
     ret = [0,0,0,0]
     i = 0
+    print(predicted_food)
     for food in predicted_food:
         df1 = (df.loc[df['food'] == food])
         if(i<2):
